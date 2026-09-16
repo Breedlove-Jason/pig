@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {PigGame} from '../engine.js';
+test('new match starts clean',()=>{const g=new PigGame();assert.deepEqual(g.scores,[0,0]);assert.equal(g.active,0);assert.equal(g.current,0);assert.equal(g.winner,null);});
+test('rolls accumulate in current turn only',()=>{const g=new PigGame();g.roll(4);g.roll(6);assert.equal(g.current,10);assert.deepEqual(g.scores,[0,0]);});
+test('one forfeits unbanked points and remains visible',()=>{const g=new PigGame();g.roll(6);g.roll(1);assert.equal(g.current,0);assert.equal(g.active,1);assert.equal(g.die,1);});
+test('hold banks and changes turn',()=>{const g=new PigGame();g.roll(5);g.hold();assert.deepEqual(g.scores,[5,0]);assert.equal(g.current,0);assert.equal(g.active,1);});
+test('bank survives opponent bust',()=>{const g=new PigGame();g.roll(6);g.hold();g.roll(6);g.roll(1);assert.deepEqual(g.scores,[6,0]);assert.equal(g.active,0);});
+test('empty hold does not change turn',()=>{const g=new PigGame();assert.equal(g.hold(),false);assert.equal(g.active,0);});
+test('100 unbanked does not win until hold',()=>{const g=new PigGame();for(let i=0;i<20;i++)g.roll(5);assert.equal(g.winner,null);g.hold();assert.equal(g.winner,0);assert.equal(g.current,0);assert.equal(g.roll(6),false);assert.equal(g.hold(),false);assert.deepEqual(g.scores,[100,0]);});
+test('player two can exceed target and win',()=>{const g=new PigGame();g.roll(1);for(let i=0;i<17;i++)g.roll(6);g.hold();assert.equal(g.winner,1);assert.deepEqual(g.scores,[0,102]);g.reset();assert.deepEqual(g.scores,[0,0]);assert.equal(g.winner,null);assert.equal(g.die,null);});
+test('invalid dice rejected',()=>{for(const n of [0,7,2.5,NaN])assert.throws(()=>new PigGame().roll(n),RangeError);});

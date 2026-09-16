@@ -1,36 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Pig Game</title>
-  </head>
-  <body>
-    <main>
-      <section class="player player--0 player--active">
-        <h2 class="name" id="name--0">Player 1</h2>
-        <p class="score" id="score--0">43</p>
-        <div class="current">
-          <p class="current-label">Current</p>
-          <p class="current-score" id="current--0">0</p>
-        </div>
-      </section>
-      <section class="player player--1">
-        <h2 class="name" id="name--1">Player 2</h2>
-        <p class="score" id="score--1">24</p>
-        <div class="current">
-          <p class="current-label">Current</p>
-          <p class="current-score" id="current--1">0</p>
-        </div>
-      </section>
-
-      <img src="dice-5.png" alt="Playing dice" class="dice" />
-      <button class="btn btn--new">🔄 New game</button>
-      <button class="btn btn--roll">🎲 Roll dice</button>
-      <button class="btn btn--hold">📥 Hold</button>
-    </main>
-    <script src="script.js"></script>
-  </body>
-</html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pig · The Arcade · Jason Breedlove</title><meta name="description" content="Roll a little. Risk a little. A two-player dice game: bank your points before a one ends your turn. First to 100 wins."><meta name="theme-color" content="#211724"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><a class="brand" href="https://www.jasonbreedlove.dev">JB <span>/ THE ARCADE</span></a><a href="https://github.com/Breedlove-Jason/pig-game-v2/tree/feat/arcade-refresh">View source ↗</a></header>
+<main><section class="intro"><p class="eyebrow">NO. 05 / PIG</p><h1>Know when<br>to <em>hold.</em></h1><p class="lede">One more roll?<br>That’s where it gets interesting.</p><div class="rules"><p class="eyebrow">A LITTLE LUCK. A LITTLE NERVE.</p><ol><li><strong>Roll</strong> to add to your turn score.</li><li><strong>Hold</strong> to bank it and pass the die.</li><li>Roll a <strong>1</strong>? Lose this turn’s points.</li></ol><p>First to bank <strong>100 points</strong> wins.</p></div><p class="tag">2 PLAYERS · ONE DEVICE · NO SIGN-IN</p></section>
+<section class="game" aria-label="Pig dice game"><div class="game-top"><span>THE RACE TO 100</span><button id="new" class="quiet">New game ↗</button></div><div class="players">
+<section id="player-0" class="player active" aria-labelledby="name-0"><div class="player-heading"><h2 id="name-0">Player 1</h2><span class="turn" id="turn-0">YOUR TURN</span></div><p class="score" id="score-0">0</p><span class="bank-label">POINTS BANKED</span><progress id="progress-0" max="100" value="0" aria-label="Player 1 progress to 100"></progress><div class="current"><span>THIS TURN</span><strong id="current-0">0</strong></div></section>
+<section id="player-1" class="player" aria-labelledby="name-1"><div class="player-heading"><h2 id="name-1">Player 2</h2><span class="turn" id="turn-1">UP NEXT</span></div><p class="score" id="score-1">0</p><span class="bank-label">POINTS BANKED</span><progress id="progress-1" max="100" value="0" aria-label="Player 2 progress to 100"></progress><div class="current"><span>THIS TURN</span><strong id="current-1">0</strong></div></section>
+</div><div class="dice-row"><div id="die" class="die" role="img" aria-label="No roll yet"><span class="die-placeholder">?</span></div><div><p class="eyebrow" id="roll-label">MAKE YOUR FIRST MOVE</p><p id="status" role="status" aria-live="polite">Player 1 starts. Roll the die to begin.</p></div></div><div class="actions"><button id="roll" class="primary">Roll dice</button><button id="hold" disabled>Hold points</button></div><p class="hint">Pass the device when the turn changes. Your banked points stay safe.</p></section></main>
+<footer><span>A game of chance and knowing when to stop. Built by Jason Breedlove.</span><a href="https://www.jasonbreedlove.dev/#projects">Back to the portfolio ↗</a></footer><script type="module" src="script.js"></script></body></html>
