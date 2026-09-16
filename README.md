@@ -1,49 +1,32 @@
-# Pig Game v2
+# Pig · The Arcade
 
-Welcome to Pig Game v2! This is a fun and simple dice game implemented in JavaScript, HTML, and CSS.
+A two-player, pass-and-play dice game by Jason Breedlove. JavaScript, HTML, and CSS; no account, database, or backend.
 
-## Game Rules
+## Rules
 
-- The game has 2 players, playing in rounds.
-- In each turn, a player rolls a dice as many times as they wish. Each result gets added to their ROUND score.
-- BUT, if the player rolls a 1, all their ROUND score gets lost. After that, it's the next player's turn.
-- The player can choose to 'Hold', which means that their ROUND score gets added to their GLOBAL score. After that, it's the next player's turn.
-- The first player to reach 100 points on GLOBAL score wins the game.
+Player 1 starts. Roll to add points to your turn score. Hold to bank them and pass the die. Rolling a one loses only the current turn's points and passes play to the other person. The first player to **bank 100 or more** wins.
 
-## Features
+Play together on one device. Use the on-screen Roll and Hold buttons, or Tab to a button and activate it with Enter/Space. The active player is marked with both text and color. Rolling a one stays visible with an explanation. Once a player wins, Roll and Hold are disabled until New game resets the match.
 
-- Rolling the dice
-- Holding the score
-- Switching between players
-- Declaring the winner
-- Starting a new game
+## Run
 
-## How to Play
+```sh
+npm test
+npm run build
+python3 -m http.server 8000 --directory dist
+```
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/Breedlove-Jason/pigGamev2.git
-    ```
+Open http://localhost:8000. Serve over HTTP because the code uses ES modules.
 
-2. Open `index.html` in your web browser.
+## Structure
 
-3. Enjoy the game!
+- `engine.js`: display-independent dice, bank, turn, and win rules
+- `script.js`: DOM updates and button controls
+- `style.css`: responsive Arcade layout and focus styles
+- `tests/engine.test.js`: scoring, forfeits, both players winning, reset, and invalid input checks
 
-## Code Structure
+Original dice PNGs and the flowchart remain in the source repository. The interface draws die faces with CSS, so gameplay has no image loading dependency. Fonts use a system fallback if Google Fonts is unavailable.
 
-- `index.html`: The main HTML file containing the structure of the game.
-- `style.css`: The CSS file for styling the game.
-- `script.js`: The JavaScript file containing the game logic.
+## Deployment
 
-## Development
-
-Feel free to contribute to the project. Fork the repository and submit pull requests.
-
-## License
-
-This project is licensed under the MIT License.
-
-## Author
-
-Jason Breedlove
-
+Vercel: Other preset, `npm run build`, output `dist` (provided in `vercel.json`). No environment variables needed. This is a local two-player game, with no computer opponent or online multiplayer.
